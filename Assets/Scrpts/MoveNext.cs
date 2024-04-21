@@ -5,11 +5,11 @@ using UnityEngine;
 public class MoveNext : MonoBehaviour
 {
     public float speed;
-    public int index;
     public int allObjects;//Objectの数
     public GameObject center;
-    public float moveAngle;
-    public float moveSeconds;
+    public int index;
+    float moveAngle;
+    float moveSeconds;
     void Start()
     {
         index = 1;
