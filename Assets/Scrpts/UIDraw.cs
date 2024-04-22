@@ -7,35 +7,45 @@ public class UIDraw : MonoBehaviour
 {
     public MoveNext moveNext;
     public int index;
-    bool isDisplay;
+    public bool isDisplay;
     public GameObject imageObject;
     public Image imageComponent;
-    //public bool isTest;//テストか本番か判定する
     public Sprite[] spriteImage;
+    public GameObject buttonObject;
+    public Image buttonComponent;
+    public Sprite[] buttonImage;
+    public GameObject intro;
     void Start ()
     {
         imageComponent = imageObject.GetComponent<Image>();
+        buttonComponent = buttonObject.GetComponent<Image>();
+        isDisplay = true;
     }
     void Update ()
     {
         index = moveNext.index;
-        //if(isTest == true){texture = Resources.Load(@"TEST\"+index) as Texture2D;}
-        //else{texture = Resources.Load(index.ToString()) as Texture2D;}
-        //imageComponent.sprite = Sprite.Create(texture, new Rect(0, 0, 600, 200), new Vector2(0,0));
-        switch (index)
+        if(isDisplay == true)
         {
-            case 1:
-            imageComponent.sprite = spriteImage[0];
-            break;
-            case 2:
-            imageComponent.sprite = spriteImage[1];
-            break;
-            case 3:
-            imageComponent.sprite = spriteImage[2];
-            break;
-            case 4:
-            imageComponent.sprite = spriteImage[3];
-            break;
+            imageComponent.sprite = spriteImage[index];
+            buttonComponent.sprite = buttonImage[0];
+            intro.SetActive(true);
         }
+        if(isDisplay == false)
+        {
+            buttonComponent.sprite = buttonImage[1];
+            intro.SetActive(false);
+        }
+    }
+    public void OnClick ()
+    {
+        isDisplay = !isDisplay;
+        /*if(isDisplay == true)
+        {
+            isDisplay = false;
+        }
+        if(isDisplay == false)
+        {
+            isDisplay = true;
+        }*/
     }
 }
