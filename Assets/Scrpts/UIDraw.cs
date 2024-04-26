@@ -26,7 +26,7 @@ public class UIDraw : MonoBehaviour
         index = moveNext.index;
         if(isDisplay == true)
         {
-            imageComponent.sprite = spriteImage[index];
+            imageComponent.sprite = spriteImage[(index%(moveNext.allObjects))];//わりかし脳筋なのでspriteImage[0]にはallObjectsのをいれる
             buttonComponent.sprite = buttonImage[0];
             intro.SetActive(true);
         }

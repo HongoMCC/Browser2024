@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MoveNext : MonoBehaviour
 {
@@ -8,27 +9,33 @@ public class MoveNext : MonoBehaviour
     public int allObjects;//Objectの数
     public GameObject center;
     public int index;
-    float moveAngle;
+    public float moveAngle;
     float moveSeconds;
+    public float currentAngle;
     void Start()
     {
-        index = 1;
+        index = 1025;
         moveAngle = 360/allObjects;
         moveSeconds = moveAngle/speed;
+        currentAngle = 0f;
     }
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.RightArrow))
         {
             StartCoroutine(Move(-speed));
-            if(index == allObjects){index = 1;}
-            else{index ++;}
+            index++;
+            currentAngle = currentAngle+moveAngle;
         }
         if(Input.GetKeyDown(KeyCode.LeftArrow))
         {
             StartCoroutine(Move(speed));
-            if(index == 1){index = allObjects;}
-            else{index --;}
+            if(index == 0)
+            {
+                SceneManager.LoadScene("HideScene");
+            }
+            else{index--;}
+            currentAngle = currentAngle-moveAngle;
         }
     }
     public IEnumerator Move(float speed)
